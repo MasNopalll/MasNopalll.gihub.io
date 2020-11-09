@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Form Tanggal</title>
+    <style>
+        .label
+        {justify-self: start; width: 150px; }
+        .infobox
+         {width: 200px; }
+        .error
+         { color: red; padding-left: 10px; }
+        .submit
+         { margin-left: 0; margin-top: 15px;}
+    </style>
+</head>
+<body>
+    <body style="background-image: linear-gradient( #4a9954, #b4d815)"></body>
+    <form id="signup" method="post" action="">
+        <div>
+            <div class="container" style="background-color: aliceblue; margin-top: 20px; width: 360px; height: 580px;">
+            <span class="label">Masukkan Tanggal Lahir </span>
+            <input type="text" class="infobox form-control" name="dob" />
+            <span class="error">Gunakan format yang benar! (mm/dd/yyyy atau mm-dd-yyyy)</span>
+            <input class="submit btn btn-success" type="submit" value="Submit">
+            </div>
+        </div>
+        </form>
+    <script>
+       $(document).ready(function() {
+            $('.error').hide(); //class error disembunyikan terlebih dahulu
+            $('.submit').click(function(event){ //tombol submit di klik
+                var data=$('.infobox').val(); //membaca isi textbox dengan class name textbox
+                    if(validate_date(data)) {
+                        $('.error').hide();
+                    } else {
+                        $('.error').show();
+                        event.preventDefault();
+                    }
+            });
+        });
+                function validate_date(date) { //menyimpan semua jenis karakter yang akan di cek
+                var pattern= new RegExp(/\b\d{1,2}[\/-]\d{1,2}[\/-]\d{4}\b/); //mengecek karakter yang diisi di textbox apakah sudah sesuai dengan format dd-mm-yyyy //dengan dd dan mm merupakan kombinasi 2 angka dan yyyy merupakan combinasi 4 angka
+                return pattern.test(date); //jika format karakter sudah cocok maka akan kembali ke textbox
+                }
+    </script>
+</body>
+</html>
